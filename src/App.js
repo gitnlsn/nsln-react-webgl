@@ -96,6 +96,7 @@ const App = () => {
             <WebGL.WebGLView2d
                 data={data}
                 config={config}
+                onError={error => console.log(error)}
             />
         </div>
     );

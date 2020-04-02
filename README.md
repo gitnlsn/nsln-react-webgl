@@ -2,7 +2,7 @@
 
 This package is a React Component that uses WebGL to draw structured meshes over the Canvas.
 
-# Usage
+# Usage - WebGLView2D
 
 1. Have the structured data to display in WebGL format
 2. Specify rendering evironment configurations
@@ -12,17 +12,19 @@ This package is a React Component that uses WebGL to draw structured meshes over
 
 The data is a JSON object with the following attributes.
 
-The `vertices` property is an floating point number array, where every three numbers define coordinates of a vertex. Vertices are defined in 3D coordinates.
+The `vertices` property is an floating point number array, where every three numbers define coordinates of a vertex. Vertices are defined in 3D coordinates. 
 
-The `triangles` property is a integer number array, where every three numbers define the indices of the vertices that compose the triangle.
+> Set z=0 for each vertex, to in a single plane.
 
 The `segments` property is a integer number array, where every two numbers define the indices of the vertices that compose the segment.
+
+The `triangles` property is a integer number array, where every three numbers define the indices of the vertices that compose the triangle.
 
 The `values` property is a floating point number array, where every four numbers define a RGBA value. Each color match the vertex in the same order they are defined.
 
 The following example draws a unit cube with colors.
 
-```javascript
+```Javascript
 const data = {
     vertices: [
         /* Vertices at front */
@@ -119,7 +121,7 @@ A `defaultSegmentColor` property which specifies the color of the segments drawn
 
 A `resolution` property which species ratio of the canvas size over the window viewport. Canvas default size 1 is to match the the browser window with full viewport size (100vw,100vv).
 
-``` javascript
+```Javascript
 const config = {
     backgroundColor: [0.9, 0.9, 0.9, 1.0],
     strokeWidth: 5,
@@ -130,15 +132,14 @@ const config = {
 
 ## Rendering the component
 
-
-
-```javascript
+```Javascript
 import GL from 'nlsn-react-webgl';
 
 const App = () => (
     <GL.WebGLView2d
         data={data}
         config={config}
+        onError={error => console.log(error)}
     />
 );
 ```

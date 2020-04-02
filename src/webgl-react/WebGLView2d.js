@@ -6,10 +6,10 @@ import { getRecBoundaries } from './utils/Preprocessors';
 const WebGLView2d = ({
     data,
     config,
+    onError,
 }) => {
     const glContextRef = useRef();
     const boundaries = getRecBoundaries(data);
-
     const observer = {
         projectionMatrix: {
             fieldOfView: 60 * Math.PI / 180,
@@ -20,8 +20,8 @@ const WebGLView2d = ({
             {
                 action: 'translate', values: {
                     delta: [
-                        boundaries.x.center,
-                        boundaries.y.center,
+                        -boundaries.x.center,
+                        -boundaries.y.center,
                         -boundaries.radius * 2,
                     ]
                 }
@@ -74,6 +74,7 @@ const WebGLView2d = ({
                 });
                 glContextRef.current = context;
             }}
+            onError={error => onError(error)}
         />
     );
 }
