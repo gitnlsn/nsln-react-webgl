@@ -2,6 +2,12 @@
 
 This package is a React Component that uses WebGL to draw structured meshes over the Canvas.
 
+# Install
+
+```bash
+$ npm i nlsn-react-webgl
+```
+
 # Usage - WebGLView2D
 
 1. Have the structured data to display in WebGL format
